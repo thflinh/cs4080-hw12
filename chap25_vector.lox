@@ -1,0 +1,24 @@
+fun vector(x, y) {
+  fun get(method) {
+    if (method == "x") return x;
+    if (method == "y") return y;
+
+    if (method == "add") {
+      fun add(other) {
+        return vector(x + other("x"), y + other("y"));
+      }
+      return add;
+    }
+  }
+
+  return get;
+}
+
+var v1 = vector(1, 2);
+var v2 = vector(3, 4);
+var v3 = v1("add")(v2);
+
+print v1("x");
+print v1("y");
+print v3("x");
+print v3("y");
